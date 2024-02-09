@@ -1,0 +1,51 @@
+#include<pic.h>   //include the pic controller in the MPLAB IDE
+__CONFIG(0X3D72);  //configure the convinent 
+void main()
+{
+	TRISC=0X00;        
+	PORTC=0X00;
+	T2CON=0X05;     //pwm is for timer2 
+    //CCP1CON=0X0C;
+	
+    RC3=1;        //  push button
+    RC4=1;
+    RC5=1;
+    RC6=1;
+
+
+	if(RC3==0)
+	{
+ 
+      PR2=0XF9; // 249
+      CCPR1L=0X3E; // 62 / 8 bit / 25% duty cycle
+      CCP1CON=0X1C; // (0.25)/2 bit 
+	
+     }
+     
+ 	if(RC4==0)
+	{
+	  PR2=0XF9; // 249
+      CCPR1L=0X7C; // 124 / 8 bit / 50 duty cycle
+      CCP1CON=0X2C; // (0.50)/2 bit 
+	 }
+    
+    if(RC5==0)
+     {
+       PR2=0XF9; // 249
+       CCPR1L=0XBA; // 186 / 8 bit / 75 duty cycle
+       CCP1CON=0X3C; // (0.75)/2 bit 
+      
+       }
+ 
+    if(RC6==0)
+    {
+      PR2=0XF9; // 249
+      CCPR1L=0XF9; // 249 / 10 	bit / 100 duty cycle
+      CCP1CON=0X0C; // 0/0 bit 
+      
+       }
+    
+     }
+   
+
+
